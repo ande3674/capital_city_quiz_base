@@ -8,7 +8,6 @@ let playAgainButton = document.querySelector('#play-again')
 // This array is defined in the countries.js file. Your browser treats all
 // JavaScript files as one big file, organized in the order of the script tags
 // so countriesAndCodes is available to this file
-//console.log(countriesAndCodes)  // You don't need to log countriesAndCodes - just proving it is available
 
 function getRandomIndex(max) {
   return Math.floor(Math.random() * max)
@@ -35,13 +34,11 @@ submitButton.addEventListener("click", function() {
   }).then( (data) => {
     // data is a JS object
     // the resolved result of response.json()
-    //console.log(data);
     capital = data[1][0]['capitalCity']
     console.log("Capital: " + capital);
     let userAnswer = userAnswerElement.value
     var msg = ''
     msg += `The capital of ${countryInfo.name} is ${capital}<br>`;
-    console.log(msg);
     msg += `Your answer is ${userAnswer}<br>`;
     if (capital.toLowerCase() === userAnswer.toLowerCase()){
       msg += 'You are correct!';
@@ -55,11 +52,12 @@ submitButton.addEventListener("click", function() {
     console.log('Error!', error);
   })
 })
-//      You can decide how correct you require the user to be. A basic solution requires
-//      the user's answer to be exactly the same as the World Bank answer. If you want
-//      to be more flexible, include and use a string similarity library such as https://github.com/hiddentao/fast-levenshtein
-//  * Display an appropriate result in the resultTextElement.
-//      For example "Correct! The capital of Germany is Berlin" or "Wrong - the capital of Germany is not G, it is Berlin"
+//You can decide how correct you require the user to be. A basic solution requires
+//the user's answer to be exactly the same as the World Bank answer. If you want
+//to be more flexible, include and use a string similarity library such as
+//TODO https://github.com/hiddentao/fast-levenshtein
+//Display an appropriate result in the resultTextElement.
+//For example "Correct! The capital of Germany is Berlin" or "Wrong - the capital of Germany is not G, it is Berlin"
 playAgainButton.addEventListener("click", function() {
   // clear fields
   resultTextElement.innerHTML = '';

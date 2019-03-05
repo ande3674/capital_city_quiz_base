@@ -2,6 +2,7 @@ let randomCountryElement = document.querySelector('#random-country')
 let userAnswerElement = document.querySelector("#user-answer")
 let submitButton = document.querySelector("#submit-answer")
 let resultTextElement = document.querySelector('#result')
+let playAgainButton = document.querySelector('#play-again')
 
 // when the page loads, select an element at random from the countriesAndCodes array
 // This array is defined in the countries.js file. Your browser treats all
@@ -53,20 +54,18 @@ submitButton.addEventListener("click", function() {
     // promise is rejected if error occurs
     console.log('Error!', error);
   })
-  // var msg = ''
-  // msg += `The capital of ${countryInfo.name} is ${capital}<br>`;
-  // console.log(msg);
-  // msg += `Your answer is ${userAnswerElement.innerHTML}<br>`;
-  // if (capital === userAnswerElement.innerHTML){
-  //   msg += 'You are correct!';
-  // } else {
-  //   msg += 'Sorry, your answer is incorrect!';
-  // }
-  // console.log(msg);
-  // resultTextElement.innerHTML = msg;
 })
 //      You can decide how correct you require the user to be. A basic solution requires
 //      the user's answer to be exactly the same as the World Bank answer. If you want
 //      to be more flexible, include and use a string similarity library such as https://github.com/hiddentao/fast-levenshtein
 //  * Display an appropriate result in the resultTextElement.
 //      For example "Correct! The capital of Germany is Berlin" or "Wrong - the capital of Germany is not G, it is Berlin"
+playAgainButton.addEventListener("click", function() {
+  // clear fields
+  resultTextElement.innerHTML = '';
+  userAnswerElement.value = '';
+  // display the country's name in the randomCountryElement
+  countryInfo = countriesAndCodes[getRandomIndex(countriesAndCodes.length)];
+  randomCountryElement.innerHTML = countryInfo.name;
+  console.log(countryInfo);
+})
